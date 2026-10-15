@@ -1,26 +1,20 @@
--- SWILL: Скрипт для мгновенного кражи яиц в Roblox "Steal an Egg" с поддержкой мобильных устройств
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/SwillWay/EggStealer/main/EggStealerScript.lua"))()
-
--- Создаем интерфейс
 local player = game.Players.LocalPlayer
 local gui = Instance.new("ScreenGui")
 gui.Name = "EggStealerGUI"
 gui.Parent = player.PlayerGui
 
 local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0, 200, 0, 200)  -- Увеличиваем размер для добавления надписи
+frame.Size = UDim2.new(0, 200, 0, 200)
 frame.Position = UDim2.new(0.5, -100, 0.5, -100)
 frame.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
 frame.Parent = gui
 
--- Добавляем надпись "maded by stealslol"
 local label = Instance.new("TextLabel")
 label.Size = UDim2.new(0, 180, 0, 30)
 label.Position = UDim2.new(0, 10, 0, 10)
 label.Text = "maded by stealslol"
 label.TextColor3 = Color3.new(1, 1, 1)
-label.BackgroundTransparency = 1  -- Прозрачный фон
+label.BackgroundTransparency = 1
 label.Parent = frame
 
 local stealButton = Instance.new("TextButton")
@@ -37,7 +31,6 @@ teleportButton.Text = "Teleport to Egg"
 teleportButton.BackgroundColor3 = Color3.new(0.8, 0.4, 0.4)
 teleportButton.Parent = frame
 
--- Функция для мгновенного кражи яйца
 local function stealEggInstantly()
     local eggs = workspace:FindFirstChild("Eggs")
     if eggs then
@@ -49,7 +42,6 @@ local function stealEggInstantly()
     end
 end
 
--- Функция для телепортации к ближайшему яйцу
 local function teleportToEgg()
     local eggs = workspace:FindFirstChild("Eggs")
     if eggs then
@@ -70,11 +62,9 @@ local function teleportToEgg()
     end
 end
 
--- Подключаем функции к кнопкам
 stealButton.MouseButton1Click:Connect(stealEggInstantly)
 teleportButton.MouseButton1Click:Connect(teleportToEgg)
 
--- Поддержка мобильных устройств
 local function onTouchInput(input, gameProcessed)
     if not gameProcessed then
         local touchLocation = input.Position
@@ -88,17 +78,11 @@ local function onTouchInput(input, gameProcessed)
     end
 end
 
--- Подключаем обработчик касаний для мобильных устройств
 game:GetService("UserInputService").TouchStarted:Connect(onTouchInput)
 
--- Дополнительные функции (по желанию)
--- Например, автоматическая кража яиц каждые 5 секунд
 local function autoSteal()
     while true do
         wait(5)
         stealEggInstantly()
     end
 end
-
--- Запуск автоматической кражи (раскомментируйте, если нужно)
--- spawn(autoSteal)
